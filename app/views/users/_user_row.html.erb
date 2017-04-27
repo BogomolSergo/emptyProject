@@ -1,0 +1,6 @@
+<tr>
+  <td><%= user.fullname %></td>
+  <td><%= link_to 'Destroy', user_path(user), class: 'destroy-user', remote: true, method: :delete %></td>
+  <td> - </td>
+  <td><%= link_to 'Show', "/user/#{user.id}" %></td>
+</tr>

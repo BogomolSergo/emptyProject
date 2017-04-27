@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-xs-6 col-sm-4"></div>
+  <div class="col-xs-6 col-sm-4">
+    <%= form_for @post do |p| %>
+        <h2 class="form-signin-heading">Editing post</h2>
+        <%= link_to 'Back', post_path %>
+        <p>
+          <%= p.label :title %><br />
+          <%= p.text_field :title, class: 'form-control' %>
+        </p>
+        <p>
+          <%= p.label :body %><br />
+          <%= p.text_area :body, class: 'form-control'%>
+        </p>
+        <p ><%= submit_tag 'Edit', class: 'btn btn-primary' %></p>
+    <% end %>
+  </div>
+  <div class="col-xs-6 col-sm-4"></div>
+</div>

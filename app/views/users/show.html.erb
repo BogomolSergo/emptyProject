@@ -1,0 +1,27 @@
+<%= form_for @user, url:{action: :show}, html: {class: 'nifty-form'} do |user| %>
+    </br>
+    <p>
+    <%= user.label :username %>
+    <%= user.text_field :username %>
+    </p>
+    <p>
+    <%= user.label :first_name %>
+    <%= user.text_field :first_name %>
+    </p>
+    <p>
+    <%= user.label :last_name  %>
+    <%= user.text_field :last_name %>
+    </p>
+    <p>
+      <%= user.label :email  %>
+      <%= user.text_field :email %>
+    </p>
+    <p>
+      <%= user.label :birthday  %>
+      <%= user.text_field :birthday %>
+    </p>
+
+    <%= link_to 'Destroy', user_path,
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %>
+<% end %>

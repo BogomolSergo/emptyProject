@@ -1,0 +1,58 @@
+<%= flash[:notice] %>
+<div class="row">
+  <div class="col-xs-6 col-sm-4"><br>
+    <div class="panel panel-default">
+      <div class="panel-heading">Registered users</div>
+        <table class="table">
+          <% @users.each do |user| %>
+              <%= render 'user_row', user: user %>
+          <% end %>
+        </table>
+    </div>
+  </div>
+  <div class="col-xs-6 col-sm-4">
+    <h1>Create user</h1>
+    <%= form_for @user, id: 'new_user', remote: true do |f| %>
+        <% if @user.errors.any? %>
+            <div class="error_messages">
+              <h2>Form is invalid</h2>
+              <ul>
+                <% for message in @user.errors.full_messages %>
+                    <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+        <p>
+          <%= f.label :username %><br />
+          <%= f.text_field :username, class: 'form-control' %>
+        </p>
+        <p>
+          <%= f.label :first_name %><br />
+          <%= f.text_field :first_name, class: 'form-control' %>
+        </p>
+        <p>
+          <%= f.label :last_name %><br />
+          <%= f.text_field :last_name, class: 'form-control' %>
+        </p>
+        <p>
+          <%= f.label :email %><br />
+          <%= f.text_field :email, class: 'form-control' %>
+        </p>
+        <p>
+          <%= f.label :password %><br />
+          <%= f.password_field :password, class: 'form-control' %>
+        </p>
+        <p>
+          <%= f.label :password_confirmation %><br />
+          <%= f.password_field :password_confirmation, class: 'form-control' %>
+        </p>
+        <p><%= submit_tag 'Create user', class: 'btn btn-primary' %></p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          AJAX
+        </button>
+    <% end %>
+  </div>
+  <div class="col-xs-6 col-sm-4"></div>
+</div>
+</br><%= link_to 'Add user', '/sign_up', class: 'add_user' %>

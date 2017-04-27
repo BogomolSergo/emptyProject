@@ -1,0 +1,54 @@
+</br><%= link_to 'New post', '/posts/new' %>
+<p></p>
+<div id="new_post">
+  <div class="row">
+    <div class="col-xs-6 col-sm-4"></div>
+    <div class="col-xs-6 col-sm-4">
+      <%= form_for @post do |p| %>
+          <% if @post.errors.any? %>
+              <div class="error_messages">
+                <h2>Form is invalid</h2>
+                <ul>
+                  <% for message in @post.errors.full_messages %>
+                      <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+          <% end %>
+          <h2 class="form-signin-heading">Creating new post</h2>
+          <p>
+            <%= p.label :title %><br />
+            <%= p.text_field :title, class: 'form-control' %>
+          </p>
+          <p>
+            <%= p.label :body %><br />
+            <%= p.text_area :body, class: 'form-control'%>
+          </p>
+          <p ><%= submit_tag 'Add post', class: 'btn btn-primary' %></p>
+      <% end %>
+    </div>
+    <div class="col-xs-6 col-sm-4"></div>
+  </div>
+</div>
+
+
+<% @posts.each do |post| %>
+    <div class="panel panel-primary">
+      <div class="panel-heading"><h2><%= post.title %></h2></div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-xs-6 col-sm-4", ><%= post.body %></div>
+          <div class="col-xs-6 col-sm-4">
+            <% if current_user && post.user.username == current_user.username %>
+              <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' } %><br>
+              <%= link_to 'Edit this post', edit_post_path(post), method: :put %>
+            <% end %>
+          </div>
+          <div class="col-xs-6 col-sm-4">
+            <%= render 'post_date', post: post %>
+            Posted by: <%= post.user.fullname %>
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>
